@@ -1,0 +1,43 @@
+<!-- app.component.html -->
+<mat-toolbar color="primary">
+  <span>Malgudy</span>
+  <a mat-button routerLink="/" routerLinkActive="active">Home</a>
+  
+  <span routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">Admin Dashboard</span>
+  <span routerLink="user" *ngIf="userService.roleMatch(['User'])">User Dashboard</span>
+
+  <span class="flex-spacer"></span>
+
+  <div class="button-group">
+    <a mat-button *ngIf="!isLoggedIn()" routerLink="/login">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+        <!-- SVG path -->
+      </svg> Login
+    </a>
+
+    <a mat-button (click)="registerUser()" *ngIf="!isLoggedIn()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+        <!-- SVG path -->
+      </svg> Sign-up
+    </a>
+
+    <a mat-button (click)="logout()" *ngIf="isLoggedIn()" href="#">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+        <!-- SVG path -->
+      </svg> Logout
+    </a>
+  </div>
+</mat-toolbar>
+
+
+<mat-toolbar color="primary" *ngIf="isLoggedIn()">
+  <button mat-raised-button color="primary" routerLink="/">Home</button>
+  <button *ngIf="isAdmin()" mat-raised-button color="primary" routerLink="/addNewProduct" >Add New Product</button>
+  <button *ngIf="isAdmin()" mat-raised-button color="primary" routerLink="/showProductDetails" >Product Details</button>
+
+  <button *ngIf="isAdmin()" mat-raised-button color="primary" routerLink="/getAllUsers" >User Details</button>
+
+</mat-toolbar>
+
+
+
