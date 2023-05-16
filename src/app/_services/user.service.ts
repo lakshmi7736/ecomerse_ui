@@ -71,15 +71,5 @@ export class UserService {
     }
 return isMatch;
   }
-
-
-  getAllUsers(): Observable<User[]> {
-    return this.httpclient.get<User[]>(`${this.PATH_OF_API}/getAllUsers`);
-  }
-
-  public deleteUser(userName: string){
-    return this.httpclient.delete(this.PATH_OF_API+"/deleteUserDetails"+userName);
-  }
-
   
 }

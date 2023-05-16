@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { User } from '../_model/user.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AdminService } from '../admin.service';
+import { NgForOfContext } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-details',
@@ -9,34 +12,66 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  userData: User[] = [];
-  displayedColumns: string[] = ['userName', 'userFirstName', 'userLastName', 'edit', 'delete'];
 
-  constructor(private userService: UserService) { }
+  errorMessage:string='';
+  successMessage: string='';
+  userData: User[] = [];
+
+  constructor(
+    private adminService: AdminService
+  ) {
+    this.getUserDetails();
+   }
 
   ngOnInit(): void {
-    this.userDetails();
+
   }
 
-  userDetails() {
-    this.userService.getAllUsers().subscribe(
-      (response: User[]) => {
-        this.userData = response;
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+  user: User={
+    userName :'',
+    userFirstName:'',
+    userLastName:'',
+    userPassword:''
+  }
+  showSuccessMessage(message: string) {
+    this.successMessage=message;
+    setTimeout(() => {
+      this.successMessage = '';
+    }, 2000); // Adjust the duration (in milliseconds) as per your requirement
   }
 
-  deleteUsers(userName:string){
-    this.userService.deleteUser(userName).subscribe(
+  register(registerForm: NgForm) {
+    if (
+      registerForm.value.userFirstName === '' ||
+      registerForm.value.userLastName === '' ||
+      registerForm.value.userName === '' ||
+      registerForm.value.userPassword === ''
+    ) {
+      this.errorMessage = 'All fields are required';
+    } else {
+      this.errorMessage = '';
+      this.adminService.registerUser(registerForm.value).subscribe(
+        (resp) => {
+          this.showSuccessMessage('User added successfully');
+          console.log(resp);
+          registerForm.reset();
+          this.getUserDetails();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
+  }
+  getUserDetails(){
+    this.adminService.getUsers().subscribe(
       (resp:any)=>{
-        this.userDetails();
+        this.userData=resp;
       },
-      (error:HttpErrorResponse)=>{
-        console.log(error);
+      (err)=>{
+        console.log(err);
       }
     );
   }
+  
 }
