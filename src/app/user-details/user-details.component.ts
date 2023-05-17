@@ -73,5 +73,18 @@ export class UserDetailsComponent implements OnInit {
       }
     );
   }
+
+  deleteUser(user: { userName: string; }){
+    this.adminService.deleteUser(user.userName).subscribe(
+      (resp:any)=>{
+        this.getUserDetails();
+        console.log(resp);
+      },
+      (err: any)=>{
+        console.log(err);
+      }
+    );
+  }
   
+
 }
