@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
 import { User } from '../_model/user.model';
-import { HttpErrorResponse } from '@angular/common/http';
 import { AdminService } from '../admin.service';
-import { NgForOfContext } from '@angular/common';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -24,15 +21,11 @@ export class UserDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
+    this.getUserDetails();
   }
+  displayedColumns: string[] = ['id', 'userName', 'userFirstName','userLastName','gmail', 'phoneNumber','edit','delete'];
 
-  user: User={
-    userName :'',
-    userFirstName:'',
-    userLastName:'',
-    userPassword:''
-  }
+
   showSuccessMessage(message: string) {
     this.successMessage=message;
     setTimeout(() => {
@@ -41,19 +34,8 @@ export class UserDetailsComponent implements OnInit {
   }
 
   register(registerForm: NgForm) {
-    if (
-      registerForm.value.userFirstName === '' ||
-      registerForm.value.userLastName === '' ||
-      registerForm.value.userName === '' ||
-      registerForm.value.userPassword === ''
-    ) {
-      this.errorMessage = 'All fields are required';
-    } else {
-      this.errorMessage = '';
       this.adminService.registerUser(registerForm.value).subscribe(
         (resp) => {
-          this.showSuccessMessage('User added successfully');
-          console.log(resp);
           registerForm.reset();
           this.getUserDetails();
         },
@@ -62,7 +44,9 @@ export class UserDetailsComponent implements OnInit {
         }
       );
     }
-  }
+
+
+
   getUserDetails(){
     this.adminService.getUsers().subscribe(
       (resp:any)=>{
@@ -74,17 +58,20 @@ export class UserDetailsComponent implements OnInit {
     );
   }
 
-  deleteUser(user: { userName: string; }){
-    this.adminService.deleteUser(user.userName).subscribe(
+  deleteUser(userId:number){
+    this.adminService.deleteUser(userId).subscribe(
       (resp:any)=>{
         this.getUserDetails();
-        console.log(resp);
+    
       },
       (err: any)=>{
         console.log(err);
       }
     );
   }
-  
+  editUserDetails(userId: any){
+    
+  }
 
 }
+

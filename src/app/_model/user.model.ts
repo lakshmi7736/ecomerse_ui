@@ -1,6 +1,8 @@
 export interface User{
-   userName:string
+    userName:string
     userFirstName:string
     userLastName:string
+    gmail: string
+    phoneNumber:number
     userPassword:string
 }

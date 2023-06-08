@@ -15,15 +15,15 @@ export class AdminService {
   ) { }
      API='http://localhost:9090'
 
-  public registerUser(userData: any){
-    return this.http.post(this.API+'/registerUser',userData);
-  }
+     public registerUser(registerFormData:any ){
+      return this.http.post(this.API+'/registerUserByAdmin',registerFormData);
+    }
 
   public getUsers(){
     return this.http.get(this.API+'/getUsers')
   }
-  public deleteUser(userName:string){
-    return this.http.delete("http://localhost:9090/deleteUser/"+userName);
+  public deleteUser(userId:number){
+    return this.http.delete("http://localhost:9090/deleteUser/"+userId);
   }
   
 }

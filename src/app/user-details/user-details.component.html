@@ -1,76 +1,147 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class="container mt-5">
+
+    <div class="container p-5">
+       <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header text-center fs-4">register Page</div>
 
 
-  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                <div class="card-body">
 
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-         <br>
-         <div *ngIf="successMessage" class="success-message">
-          {{ successMessage }}
+                  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>First Name</mat-label>
+                        <input matInput
+                         ngModel 
+                         placeholder="fisrt name" 
+                         id="userFirstName" name="userFirstName">              
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput
+                         ngModel 
+                         placeholder="lastname" 
+                         id="userLastName" name="userLastName">         
+                      </mat-form-field>
+
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Username</mat-label>
+                        <input matInput
+                         ngModel 
+                         placeholder="Username" 
+                         id="userName" name="userName">
+                      </mat-form-field>
+                    
+
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Gmail</mat-label>
+                        <input matInput
+                         ngModel 
+                         placeholder="gmail" 
+                         id="gmail" name="gmail">
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput
+                         ngModel 
+                         placeholder="phoneNumber" 
+                         id="phoneNumber" name="phoneNumber">          
+                      </mat-form-field>
+
+
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Password</mat-label>
+                        <input matInput
+                         ngModel
+                          placeholder="Password"
+                          id="userPassword" name="userPassword" type="password">
+                      </mat-form-field>
+                      
+                      <button type="submit" mat-raised-button color="primary" class="w-100">sign-up</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        
-    
+    </div>
 
-      <mat-form-field appearance="outline" class="w-100">
-          <mat-label>First Name</mat-label>
-          <input matInput
-           ngModel 
-           required
-           placeholder="fisrt name" 
-           id="userFirstName" name="userFirstName">
-        </mat-form-field>
+ </div>
 
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Last Name</mat-label>
-          <input matInput
-           ngModel 
-           required
-           placeholder="lastname" 
-           id="userLastName" name="userLastName">
-        </mat-form-field>
-
-
-      <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Username</mat-label>
-          <input matInput
-           ngModel 
-           required
-           placeholder="Username" 
-           id="userName" name="userName">
-        </mat-form-field>
+     
+      <div class="container mt-5">
+      <table mat-table [dataSource]="userData" class="mat-elevation-z8">
       
+       
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id. </th>
+            <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef>User Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="userFirstName">
+            <th mat-header-cell *matHeaderCellDef>User First Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.userFirstName}} </td>
+          </ng-container>
+        
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="userLastName">
+            <th mat-header-cell *matHeaderCellDef>User Last Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.userLastName}} </td>
+          </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="gmail">
+            <th mat-header-cell *matHeaderCellDef>Gmail</th>
+            <td mat-cell *matCellDef="let element"> {{element.gmail}} </td>
+          </ng-container>
+      
+      
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="phoneNumber">
+            <th mat-header-cell *matHeaderCellDef>Phone Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+          </ng-container>
+    
+      
+      <!-- edit button -->
+            <ng-container matColumnDef="edit">
+              <th mat-header-cell *matHeaderCellDef>Edit</th>
+              <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button  color="primary" (click)="editUserDetails(element.userId)">
+                  <mat-icon >
+                    edit
+                    </mat-icon>
+                </button>
+               </td>
+            </ng-container>
+      
+            <!-- delete button -->
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef>Delete </th>
+              <td mat-cell *matCellDef="let element"> 
+                <button mat-icon-button color="warn" (click)="deleteUser(element.userId)">
+                  <mat-icon> delete </mat-icon>
+                </button>
+               </td>
+            </ng-container>
+        
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+        
 
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Password</mat-label>
-          <input matInput
-           ngModel
-           required
-            placeholder="Password"
-            id="userPassword" name="userPassword" type="password">
-        </mat-form-field>
-        <button type="submit" mat-raised-button color="primary" class="w-100">sign-up</button>
-      </form>
 
-      <table class="table table-bordered">
-        <thead class="thead">
-          <tr>
-            <th>User Name</th>
-            <th>User First Name</th>
-            <th>User Last Name</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody class="tbody">
-          <tr *ngFor="let user of userData">
-            <td>{{user.userName}}</td>
-            <td>{{user.userFirstName}}</td>
-            <td>{{user.userLastName}}</td>
-            <td><button type="button" class="btn btn-primary">Edit</button></td>
-            <td><button type="button" class="btn btn-danger"  (click)="deleteUser(user)">Delete</button></td>
-          </tr>
-        </tbody>
-      </table>
-
-</div>
