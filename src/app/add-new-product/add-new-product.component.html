@@ -26,6 +26,24 @@
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Category</mat-label>
+                        <input matInput
+                         placeholder="category"
+                         [(ngModel)]="product.category"
+                         name="category" >
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput
+                         placeholder="quantity"
+                         [(ngModel)]="product.quantity"
+                         name="category">
+                      </mat-form-field>
+
+
+
+                      <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Product Actual Price</mat-label>
                         <input matInput
                          placeholder="actual price" 

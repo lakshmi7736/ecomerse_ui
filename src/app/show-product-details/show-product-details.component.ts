@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../_services/product.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Product } from '../_model/product.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ShowProductImagesDialogComponent } from '../show-product-images-dialog/show-product-images-dialog.component';
+import { ImageProcessingService } from '../image-processing.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-show-product-details',
@@ -12,10 +16,12 @@ export class ShowProductDetailsComponent  implements OnInit {
 
   productDetails:Product[]=[];
 
-  displayedColumns: string[] = ['id', 'productName', 'productDescription', 'productDiscountedPrice','productActualPrice','edit','delete'];
+  displayedColumns: string[] = ['id', 'productName', 'productDescription', 'productDiscountedPrice','productActualPrice','images','edit','delete'];
 
   constructor(
-    private productService:ProductService
+    private productService:ProductService,
+    public imgDialog: MatDialog,
+    private imgProcessigService: ImageProcessingService
   ){
 
   }
@@ -24,7 +30,11 @@ export class ShowProductDetailsComponent  implements OnInit {
   }
 
   public getAllProducts(){
-    this.productService.getAllProducts().subscribe(
+    this.productService.getAllProducts()
+    .pipe(
+      map((x:Product[],i)=>x.map((product:Product)=>this.imgProcessigService.createImages(product)))
+    )
+    .subscribe(
       (resp: Product[])=>{
 
         this.productDetails=resp;
@@ -45,5 +55,13 @@ export class ShowProductDetailsComponent  implements OnInit {
       }
     );
   }
-
+  showImages(product:Product){
+    this.imgDialog.open(ShowProductImagesDialogComponent,{
+      data:{
+        images:product.productImages
+      },
+      height:'500px',
+      width:'800px'
+    });
+  }
 }

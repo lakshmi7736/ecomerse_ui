@@ -5,6 +5,7 @@ import { Product } from '../_model/product.model';
 import { ProductService } from '../_services/product.service';
 import { FileHandle } from '../_model/file-handle.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-add-new-product',
@@ -18,9 +19,11 @@ export class AddNewProductComponent implements OnInit {
   product: Product={
     productName: '',
     productDescription: '',
-    productDiscountedPrice: 0,
-    productActualPrice: 0,
-    productImages: []
+    category: '',
+    productDiscountedPrice: null,
+    productActualPrice: null,
+    productImages: [],
+    quantity:null
   }
   successMessage: string='';
 
@@ -36,9 +39,11 @@ export class AddNewProductComponent implements OnInit {
     if (
       this.product.productName === '' ||
       this.product.productDescription === '' ||
-      this.product.productActualPrice === 0 ||
-      this.product.productDiscountedPrice === 0 ||
-      this.product.productImages.length === 0
+      this.product.category === ''||
+      this.product.quantity===null||
+      this.product.productActualPrice === null ||
+      this.product.productDiscountedPrice === null ||
+      this.product.productImages.length === null
     ) {
       this.errorMessage = 'All fields are required';
     } else {

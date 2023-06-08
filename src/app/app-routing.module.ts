@@ -11,6 +11,7 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
+import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
 
 
 
@@ -25,7 +26,9 @@ const routes: Routes = [
   { path: 'register-admin', component: RegisterAdminComponent , canActivate:[AuthGuard], data:{roles:['Admin']}},
   { path : 'addNewProduct', component: AddNewProductComponent, canActivate:[AuthGuard], data:{roles:['Admin']} },
   { path : 'showProductDetails', component: ShowProductDetailsComponent, canActivate:[AuthGuard], data:{roles:['Admin']} },
-  { path: 'getAllUsers', component: UserDetailsComponent,canActivate:[AuthGuard], data:{roles:['Admin']} }
+  { path: 'getAllUsers', component: UserDetailsComponent,canActivate:[AuthGuard], data:{roles:['Admin']} },
+  { path: 'showImg', component: ShowProductImagesDialogComponent,canActivate:[AuthGuard], data:{roles:['Admin']} }
+
 ];
 
 @NgModule({

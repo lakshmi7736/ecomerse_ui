@@ -4,8 +4,10 @@ export interface Product{
 
     productName: string,
     productDescription: string,
-    productDiscountedPrice: number,
-    productActualPrice: number,
+    category: string,
+    quantity: any,
+    productDiscountedPrice: any,
+    productActualPrice: any,
     productImages: FileHandle[]
 
 }
