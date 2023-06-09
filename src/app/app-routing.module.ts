@@ -12,6 +12,7 @@ import { AddNewProductComponent } from './add-new-product/add-new-product.compon
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
 import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
+import { ProductResolveService } from './product-resolve.service';
 
 
 
@@ -24,7 +25,10 @@ const routes: Routes = [
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register-admin', component: RegisterAdminComponent , canActivate:[AuthGuard], data:{roles:['Admin']}},
-  { path : 'addNewProduct', component: AddNewProductComponent, canActivate:[AuthGuard], data:{roles:['Admin']} },
+  { path : 'addNewProduct', component: AddNewProductComponent, canActivate:[AuthGuard], data:{roles:['Admin']},
+    resolve:{
+      product:ProductResolveService
+    }},
   { path : 'showProductDetails', component: ShowProductDetailsComponent, canActivate:[AuthGuard], data:{roles:['Admin']} },
   { path: 'getAllUsers', component: UserDetailsComponent,canActivate:[AuthGuard], data:{roles:['Admin']} },
   { path: 'showImg', component: ShowProductImagesDialogComponent,canActivate:[AuthGuard], data:{roles:['Admin']} }
