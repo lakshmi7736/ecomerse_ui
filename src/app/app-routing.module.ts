@@ -12,7 +12,8 @@ import { AddNewProductComponent } from './add-new-product/add-new-product.compon
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
 import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
-import { ProductResolveService } from './product-resolve.service';
+import { ProductResolveService } from './add-new-product/product-resolve.service';
+import { AddNewCategoryComponent } from './add-new-category/add-new-category.component';
 
 
 
@@ -31,7 +32,8 @@ const routes: Routes = [
     }},
   { path : 'showProductDetails', component: ShowProductDetailsComponent, canActivate:[AuthGuard], data:{roles:['Admin']} },
   { path: 'getAllUsers', component: UserDetailsComponent,canActivate:[AuthGuard], data:{roles:['Admin']} },
-  { path: 'showImg', component: ShowProductImagesDialogComponent,canActivate:[AuthGuard], data:{roles:['Admin']} }
+  { path: 'showImg', component: ShowProductImagesDialogComponent,canActivate:[AuthGuard], data:{roles:['Admin']} },
+  { path: 'addNewCategory', component: AddNewCategoryComponent,canActivate:[AuthGuard], data:{roles:['Admin']} }
 
 ];
 

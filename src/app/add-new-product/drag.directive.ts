@@ -1,5 +1,5 @@
 import { Directive, EventEmitter, HostBinding, HostListener, Output } from '@angular/core';
-import { FileHandle } from './_model/file-handle.model';
+import { FileHandle } from '../_model/file-handle.model';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Directive({

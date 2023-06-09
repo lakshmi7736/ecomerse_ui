@@ -33,7 +33,10 @@
 <mat-toolbar color="primary" *ngIf="isLoggedIn()">
   <button mat-raised-button color="primary" routerLink="/">Home</button>
   <button *ngIf="isAdmin()" mat-raised-button color="primary" routerLink="/addNewProduct" >Add New Product</button>
-  <button *ngIf="isAdmin()" mat-raised-button color="primary" routerLink="/showProductDetails" >Product Details</button>
+  <button *ngIf="isAdmin()" mat-raised-button color="primary" routerLink="/addNewCategory">Add New Category</button>
+
+
+  <button *ngIf="isAdmin()" mat-raised-button color="primary" routerLink="/showProductDetails">Product Details</button>
 
   <button *ngIf="isAdmin()" mat-raised-button color="primary" routerLink="/getAllUsers" >User Details</button>
 

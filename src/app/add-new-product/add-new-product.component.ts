@@ -5,8 +5,10 @@ import { Product } from '../_model/product.model';
 import { ProductService } from '../_services/product.service';
 import { FileHandle } from '../_model/file-handle.model';
 import { DomSanitizer } from '@angular/platform-browser';
-import { noop } from 'rxjs';
+
 import { ActivatedRoute } from '@angular/router';
+import { Category } from '../_model/category.model';
+
 
 @Component({
   selector: 'app-add-new-product',
@@ -37,6 +39,7 @@ export class AddNewProductComponent implements OnInit {
   ngOnInit(): void {
     this.product=this.activateRoute.snapshot.data['product'];
   }
+  categoryDetails: Category[] = [];
 
   addProduct(productForm: NgForm) {
     if (
@@ -112,7 +115,5 @@ export class AddNewProductComponent implements OnInit {
   fileDropped(fileHandle:FileHandle){
     this.product.productImages.push(fileHandle);
   }
-  
-
 
 }

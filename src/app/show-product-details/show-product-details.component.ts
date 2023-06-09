@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Product } from '../_model/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowProductImagesDialogComponent } from '../show-product-images-dialog/show-product-images-dialog.component';
-import { ImageProcessingService } from '../image-processing.service';
+import { ImageProcessingService } from './image-processing.service';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
 

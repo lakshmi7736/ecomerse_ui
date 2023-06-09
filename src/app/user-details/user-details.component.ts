@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_model/user.model';
-import { AdminService } from '../admin.service';
+import { AdminService } from '../_services/admin.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
