@@ -26,4 +26,7 @@ export class AdminService {
     return this.http.delete("http://localhost:9090/deleteUser/"+userId);
   }
   
+  public updateUser(){
+    return this.http.get(this.API+'/updateUser')
+  }
 }

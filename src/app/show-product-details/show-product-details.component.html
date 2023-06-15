@@ -20,6 +20,18 @@
       <th mat-header-cell *matHeaderCellDef>Product Discription</th>
       <td mat-cell *matCellDef="let element"> {{element.productDescription}} </td>
     </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Product Category</th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      </ng-container>
+
+        <!-- Weight Column -->
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Quantity</th>
+      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+    </ng-container>
   
     <!-- Symbol Column -->
     <ng-container matColumnDef="productDiscountedPrice">

@@ -6,7 +6,7 @@ import { ProductService } from '../_services/product.service';
 import { FileHandle } from '../_model/file-handle.model';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../_model/category.model';
 
 
@@ -16,10 +16,12 @@ import { Category } from '../_model/category.model';
   styleUrls: ['./add-new-product.component.css']
 })
 export class AddNewProductComponent implements OnInit {
+  isNewProduct=true;
 [x: string]: any;
   errorMessage: string = '';
 
   product: Product={
+    productId:null,
     productName: '',
     productDescription: '',
     category: '',
@@ -33,12 +35,17 @@ export class AddNewProductComponent implements OnInit {
   constructor(
     private productService:ProductService,
     private sanitizer:DomSanitizer,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private router: Router
 
   ){}
   ngOnInit(): void {
     this.product=this.activateRoute.snapshot.data['product'];
+    if (this.product && this.product.productId) {
+       this.isNewProduct=false;
+    }
   }
+  
   categoryDetails: Category[] = [];
 
   addProduct(productForm: NgForm) {
@@ -115,5 +122,4 @@ export class AddNewProductComponent implements OnInit {
   fileDropped(fileHandle:FileHandle){
     this.product.productImages.push(fileHandle);
   }
-
 }

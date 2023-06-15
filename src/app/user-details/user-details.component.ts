@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../_model/user.model';
 import { AdminService } from '../_services/admin.service';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateUserDialogComponent } from '../update-user-dialog/update-user-dialog.component';
 
 @Component({
   selector: 'app-user-details',
@@ -15,9 +17,9 @@ export class UserDetailsComponent implements OnInit {
   userData: User[] = [];
 
   constructor(
-    private adminService: AdminService
+    private adminService: AdminService,
+    public dialog: MatDialog
   ) {
-    this.getUserDetails();
    }
 
   ngOnInit(): void {
@@ -69,9 +71,8 @@ export class UserDetailsComponent implements OnInit {
       }
     );
   }
-  editUserDetails(userId: any){
-    
-  }
+  editUserDetails(userId: number){
 
 }
 
+}
