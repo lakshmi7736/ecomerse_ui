@@ -33,6 +33,7 @@ import { AddNewCategoryComponent } from './add-new-category/add-new-category.com
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { UpdateUserDialogComponent } from './update-user-dialog/update-user-dialog.component';
+import { ProuctViewDetailsComponent } from './prouct-view-details/prouct-view-details.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { UpdateUserDialogComponent } from './update-user-dialog/update-user-dial
     ShowProductDetailsComponent,
     ShowProductImagesDialogComponent,
     AddNewCategoryComponent,
-    UpdateUserDialogComponent
+    UpdateUserDialogComponent,
+    ProuctViewDetailsComponent
      
   ],
   imports: [

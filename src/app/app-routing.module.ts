@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
@@ -15,6 +15,7 @@ import { ShowProductImagesDialogComponent } from './show-product-images-dialog/s
 import { ProductResolveService } from './add-new-product/product-resolve.service';
 import { AddNewCategoryComponent } from './add-new-category/add-new-category.component';
 import { UpdateUserDialogComponent } from './update-user-dialog/update-user-dialog.component';
+import { ProuctViewDetailsComponent } from './prouct-view-details/prouct-view-details.component';
 
 
 
@@ -36,8 +37,12 @@ const routes: Routes = [
   { path: 'getAllUsers', component: UserDetailsComponent,canActivate:[AuthGuard], data:{roles:['Admin']} },
   { path: 'showImg', component: ShowProductImagesDialogComponent,canActivate:[AuthGuard], data:{roles:['Admin']} },
   { path: 'addNewCategory', component: AddNewCategoryComponent,canActivate:[AuthGuard], data:{roles:['Admin']} },
-  { path: 'updateUser', component: UpdateUserDialogComponent,canActivate:[AuthGuard], data:{roles:['Admin']} }
-
+  { path: 'updateUser', component: UpdateUserDialogComponent,canActivate:[AuthGuard], data:{roles:['Admin']} },
+  { path: 'productViewDetails', component: ProuctViewDetailsComponent,
+  resolve:{
+    product:ProductResolveService
+  }
+ }
 
 ];
 

@@ -17,7 +17,7 @@ export class ShowProductDetailsComponent  implements OnInit {
 
   productDetails:Product[]=[];
 
-  displayedColumns: string[] = ['id', 'productName', 'productDescription','category','quantity', 'productDiscountedPrice','productActualPrice','images','edit','delete'];
+  displayedColumns: string[] = ['id', 'productName', 'productDescription','category','quantity', 'productDiscountedPrice','productActualPrice','Actions'];
 
   constructor(
     private productService:ProductService,
