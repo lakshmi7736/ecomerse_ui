@@ -42,9 +42,11 @@ export class AuthInterceptor implements HttpInterceptor {
         } else if (err.status === 403) {
           this.router.navigate(['/forbidden']);
         }
-        return throwError(() => new Error('Something went wrong'));
+        const errorMessage = err.error.message || 'Something went wrong'; // Get the specific error message from the server
+        return throwError(errorMessage);
       })
     );
+    
   }
 
 

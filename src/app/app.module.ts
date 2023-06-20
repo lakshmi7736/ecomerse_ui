@@ -34,6 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { UpdateUserDialogComponent } from './update-user-dialog/update-user-dialog.component';
 import { ProuctViewDetailsComponent } from './prouct-view-details/prouct-view-details.component';
+import { OtpLoginComponent } from './otp-login/otp-login.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { ProuctViewDetailsComponent } from './prouct-view-details/prouct-view-de
     ShowProductImagesDialogComponent,
     AddNewCategoryComponent,
     UpdateUserDialogComponent,
-    ProuctViewDetailsComponent
+    ProuctViewDetailsComponent,
+    OtpLoginComponent,
+    BuyProductComponent
      
   ],
   imports: [

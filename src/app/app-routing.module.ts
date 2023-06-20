@@ -16,6 +16,9 @@ import { ProductResolveService } from './add-new-product/product-resolve.service
 import { AddNewCategoryComponent } from './add-new-category/add-new-category.component';
 import { UpdateUserDialogComponent } from './update-user-dialog/update-user-dialog.component';
 import { ProuctViewDetailsComponent } from './prouct-view-details/prouct-view-details.component';
+import { OtpLoginComponent } from './otp-login/otp-login.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
+import { BuyProductResolverService } from './buy-product-resolver.service';
 
 
 
@@ -26,6 +29,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate:[AuthGuard], data:{roles:['Admin']} },
   { path: 'user', component: UserComponent, canActivate:[AuthGuard], data:{roles:['User','Admin']} },
   { path: 'login', component: LoginComponent },
+  { path: "OtpLogin", component:OtpLoginComponent},
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register-admin', component: RegisterAdminComponent , canActivate:[AuthGuard], data:{roles:['Admin']}},
@@ -42,7 +46,11 @@ const routes: Routes = [
   resolve:{
     product:ProductResolveService
   }
- }
+ },
+ { path: 'buyProduct',component: BuyProductComponent,canActivate:[AuthGuard], data:{roles:['User']},
+ resolve:{
+  productDetails: BuyProductResolverService
+} }
 
 ];
 

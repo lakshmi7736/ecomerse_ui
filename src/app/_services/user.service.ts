@@ -33,6 +33,16 @@ export class UserService {
     });
   }
 
+  public otpLogin(otpLoginData: any) {
+    return this.httpclient.post(this.PATH_OF_API + '/otpAuthenticate', otpLoginData, {
+      headers: this.requestHeader,
+    });
+  }
+  public generateOTP(phoneNumber: string): Observable<any> {
+    return this.httpclient.post(this.PATH_OF_API + '/generateOTP', { phoneNumber });
+  }
+  
+
   public register(registerData: any) {
     return this.httpclient.post(this.PATH_OF_API + '/registerNewUser', registerData);
   }
